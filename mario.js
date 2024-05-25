@@ -5,6 +5,7 @@ var tubo = document.getElementById("koopa");
 var fungo = document.getElementById("goomba");
 var ghost = document.getElementById("ghost");
 var punteggio = document.getElementById("score");
+var timerDisplay = document.getElementById("timer");
 var musicaDiSfondo = document.getElementById("background-music");
 var suonoDiSalto = document.getElementById("jump-sound");
 var btnInizia = document.getElementById("start-btn");
@@ -12,6 +13,8 @@ var muteButton = document.getElementById("mute-button");
 
 // Variabili di stato
 var isMuted = false;
+var timerInterval;
+var tempo = 0;
 
 // Aggiungi un listener per il click al pulsante di inizio
 btnInizia.addEventListener("click", function () {
@@ -20,13 +23,13 @@ btnInizia.addEventListener("click", function () {
     btnInizia.style.display = "none"; // Nascondi il pulsante di inizio
     document.getElementById("game-container").style.display = "block"; // Mostra il contenitore di gioco
     iniziaGioco(); // Chiama la funzione per iniziare il gioco
+    startTimer(); // Avvia il timer
 });
 
 // Aggiungi un listener per il click sul pulsante mute/unmute
 muteButton.addEventListener("click", function () {
   if (isMuted) {
       musicaDiSfondo.play();
-      suonoDiSalto.play();
       muteButton.src = "./assets/unmute.webp"; // Cambia immagine a unmute
   } else {
       musicaDiSfondo.pause();
@@ -37,6 +40,18 @@ muteButton.addEventListener("click", function () {
   isMuted = !isMuted; // Cambia lo stato di mute
 });
 
+// Funzione per avviare il timer
+function startTimer() {
+    timerInterval = setInterval(function () {
+        tempo++;
+        timerDisplay.innerText = `Tempo: ${tempo}s`;
+    }, 1000); // Incrementa il tempo ogni secondo
+}
+
+// Funzione per fermare il timer
+function stopTimer() {
+    clearInterval(timerInterval);
+}
 
 // Definisci la funzione per iniziare il gioco
 function iniziaGioco() {
@@ -166,7 +181,7 @@ function iniziaGioco() {
                     ostacolo.style.animationPlayState = "paused";
                 });
                 // Richiedi la ricarica della pagina dopo aver mostrato un messaggio di Game Over
-                if (confirm("GAME OVER! Punteggio: " + punteggioGioco)) {
+                if (confirm("GAME OVER! Hai ucciso: " + punteggioGioco + " mostri rimanendo in vita " + tempo +" sec")) {
                     location.reload();
                 } else {
                     location.reload();

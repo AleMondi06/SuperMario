@@ -3,17 +3,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: url("./assets/Clouds.gif");
-  margin: 0;
-  padding: 0;
+  height: 100vh; /* Imposta l'altezza del body al 100% della viewport */
+  background: url("./assets/Clouds.gif"); /* Imposta un'immagine di sfondo */
+  margin: 0; /* Rimuove i margini predefiniti del body */
+  padding: 0; /* Rimuove i padding predefiniti del body */
 }
 
 #nome {
   position: absolute;
   top: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* Trasla l'elemento per centrarlo orizzontalmente */
   color: black;
   font-size: 50px;
   font-family:"Lucida Console", "Courier New", monospace;
@@ -24,14 +24,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px 30px;
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Dimensione del font */
   color: #000000;
   background: #2596be;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: pointer; /* Cambia il cursore in una mano quando si passa sopra il pulsante */
   outline: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Aggiunge una transizione graduale per tutte le proprietà */
 }
 
 #start-btn:hover {
@@ -56,11 +56,22 @@ body {
   font-size: 50px;
   color: #000000;
 }
+#timer {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  color: #000;
+}
+
 .obstacle {
   position: absolute;
   bottom: 65px;
   width: 50px;
-  transition: all 0.3s;
+  transition: all 0.3s; /* Aggiunge una transizione graduale per tutte le proprietà */
   display: none;
 }
 #mario {
