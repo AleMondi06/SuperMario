@@ -1,4 +1,4 @@
-// Ottieni il riferimento agli elementi HTML
+// riferimento agli elementi HTML
 var mario = document.getElementById("mario");
 var minimario = document.getElementById("minimario");
 var tubo = document.getElementById("koopa");
@@ -16,7 +16,7 @@ var isMuted = false;
 var timerInterval;
 var tempo = 0;
 
-// Aggiungi un listener per il click al pulsante di inizio
+// listener per il click al pulsante di inizio
 btnInizia.addEventListener("click", function () {
     // Avvia il gioco qui
     musicaDiSfondo.play(); // Avvia la musica di sfondo
@@ -26,34 +26,34 @@ btnInizia.addEventListener("click", function () {
     startTimer(); // Avvia il timer
 });
 
-// Aggiungi un listener per il click sul pulsante mute/unmute
+// listener per il click sul pulsante mute/unmute
 muteButton.addEventListener("click", function () {
-  if (isMuted) {
-      musicaDiSfondo.play();
-      muteButton.src = "./assets/unmute.webp"; // Cambia immagine a unmute
-  } else {
-      musicaDiSfondo.pause();
-      suonoDiSalto.pause();
-      suonoDiSalto.currentTime = 0; // Riavvia il suono del salto per essere pronti per la prossima riproduzione
-      muteButton.src = "./assets/mute.png"; // Cambia immagine a mute
-  }
-  isMuted = !isMuted; // Cambia lo stato di mute
+    if (isMuted) {
+        musicaDiSfondo.play(); // Riprendi la musica di sfondo
+        muteButton.src = "./assets/unmute.webp"; // Cambia immagine a unmute
+    } else {
+        musicaDiSfondo.pause(); // Metti in pausa la musica di sfondo
+        suonoDiSalto.pause(); // Metti in pausa il suono di salto
+        suonoDiSalto.currentTime = 0; // Riavvia il suono del salto per essere pronti per la prossima riproduzione
+        muteButton.src = "./assets/mute.png"; // Cambia immagine a mute
+    }
+    isMuted = !isMuted; // Cambia lo stato di mute
 });
 
 // Funzione per avviare il timer
 function startTimer() {
     timerInterval = setInterval(function () {
-        tempo++;
-        timerDisplay.innerText = `Tempo: ${tempo}s`;
+        tempo++; // Incrementa il tempo di gioco
+        timerDisplay.innerText = `Tempo: ${tempo}s`; // Aggiorna il display del timer
     }, 1000); // Incrementa il tempo ogni secondo
 }
 
 // Funzione per fermare il timer
 function stopTimer() {
-    clearInterval(timerInterval);
+    clearInterval(timerInterval); // Ferma l'intervallo del timer
 }
 
-// Definisci la funzione per iniziare il gioco
+// funzione per iniziare il gioco
 function iniziaGioco() {
     // Inizializza le variabili di stato del gioco
     var marioSalta = false;
@@ -61,38 +61,37 @@ function iniziaGioco() {
     var marioSiMuoveSinistra = false;
     var ostacoli = [tubo, ghost, fungo]; // Array contenente gli ostacoli
     var punteggioGioco = 0; // Punteggio iniziale
-    punteggio.innerText = punteggioGioco;
+    punteggio.innerText = punteggioGioco; // Aggiorna il punteggio nell'HTML
     var larghezzaContenitoreGioco = document.getElementById("game-container").offsetWidth; // Larghezza del contenitore di gioco
     var posizioneMario = 400; // Posizione iniziale di Mario
 
-    // Definisci la funzione per far saltare Mario
+    // funzione per far saltare Mario
     function salta() {
-      if (!marioSalta) {
-          marioSalta = true; // Imposta Mario in stato di salto
-          if (!isMuted) {
-              suonoDiSalto.play(); // Riproduci il suono di salto
-          }
-  
-          // Definisci i parametri per l'animazione del salto
-          var posIniziale = 50;
-          var posFinale = 180;
-          var velocita = 5;
-  
-          // Intervallo per l'animazione del salto
-          var intervalloSalto = setInterval(function () {
-              if (posIniziale < posFinale) {
-                  posIniziale += velocita;
-                  mario.style.bottom = posIniziale + "px"; // Aggiorna la posizione verticale di Mario
-              } else {
-                  clearInterval(intervalloSalto); // Interrompi l'intervallo quando il salto è completato
-                  caduta(); // Esegui la fase di caduta
-              }
-          }, 20); // Intervallo di tempo per l'animazione del salto
-      }
-  }
-  
+        if (!marioSalta) {
+            marioSalta = true; // Imposta Mario in stato di salto
+            if (!isMuted) {
+                suonoDiSalto.play(); // Riproduci il suono di salto
+            }
 
-    // Definisci la funzione per far cadere Mario dopo il salto
+            // parametri per l'animazione del salto
+            var posIniziale = 50;
+            var posFinale = 180;
+            var velocita = 5;
+
+            // Intervallo per l'animazione del salto
+            var intervalloSalto = setInterval(function () {
+                if (posIniziale < posFinale) {
+                    posIniziale += velocita;
+                    mario.style.bottom = posIniziale + "px"; // Aggiorna la posizione verticale di Mario
+                } else {
+                    clearInterval(intervalloSalto); // Interrompi l'intervallo quando il salto è completato
+                    caduta(); // Esegui la fase di caduta
+                }
+            }, 20); // tempo per l'animazione del salto
+        }
+    }
+
+    // funzione per far cadere Mario dopo il salto
     function caduta() {
         var posIniziale = 180;
         var posFinale = 60;
@@ -110,7 +109,7 @@ function iniziaGioco() {
         }, 20); // Intervallo di tempo per l'animazione della caduta
     }
 
-    // Definisci la funzione per muovere Mario a sinistra o a destra
+    // funzione per muovere Mario a sinistra o a destra
     function muoviMario(direzione) {
         var posizioneProposta = posizioneMario + (direzione === "destra" ? 20 : -20); // Calcola la nuova posizione proposta di Mario
         var posizioneMassimaMario = larghezzaContenitoreGioco - mario.offsetWidth; // Calcola la posizione massima di Mario nel contenitore
@@ -128,12 +127,12 @@ function iniziaGioco() {
         }
     }
 
-    // Definisci la funzione per verificare la collisione tra Mario e un ostacolo
+    // funzione per verificare la collisione tra Mario e un ostacolo
     function verificaCollisione(posizioneOstacolo) {
-        return posizioneOstacolo < posizioneMario + 100 && posizioneOstacolo > posizioneMario;
+        return posizioneOstacolo < posizioneMario + 100 && posizioneOstacolo > posizioneMario; // Verifica se Mario collide con l'ostacolo
     }
 
-    // Definisci la funzione per muovere un ostacolo
+    // funzione per muovere un ostacolo
     function muoviOstacolo(ostacolo) {
         var larghezzaContenitoreGioco = document.getElementById("game-container").offsetWidth; // Larghezza del contenitore di gioco
         var posizioneOstacolo = Math.random() < 0.5 ? -60 : larghezzaContenitoreGioco + 60; // Posizione iniziale casuale (a sinistra o a destra fuori dal contenitore)
@@ -159,14 +158,14 @@ function iniziaGioco() {
                 posizioneOstacolo = Math.random() < 0.5 ? -60 : larghezzaContenitoreGioco + 60; // Riposiziona l'ostacolo fuori dallo schermo in posizione casuale
                 direzione = posizioneOstacolo < 0 ? 1 : -1; // Reimposta la direzione del movimento
                 velocitaOstacolo += 2; // Aumenta la velocità dell'ostacolo
-                
+
                 // Flippa l'ostacolo se compare sul lato sinistro
                 if (direzione === 1) {
                     ostacolo.classList.add('flipped');
                 } else {
                     ostacolo.classList.remove('flipped');
                 }
-                
+
                 setTimeout(() => {
                     ostacolo.style.display = "block"; // Mostra l'ostacolo dopo un breve ritardo
                 }, 100);
@@ -194,7 +193,7 @@ function iniziaGioco() {
         }, Math.random() * (200 - 50) + 50); // Imposta un intervallo di tempo casuale per il movimento dell'ostacolo
     }
 
-    // Aggiungi un listener per la pressione dei tasti della tastiera
+    // listener per la pressione dei tasti della tastiera
     window.addEventListener("keydown", function (evento) {
         switch (evento.key) {
             case " ":
@@ -207,15 +206,15 @@ function iniziaGioco() {
                 marioSiMuoveSinistra = true; // Se viene premuto "a", Mario si muove a sinistra
                 break;
             case "D":
-                marioSiMuoveDestra = true; // Se viene premuto "d", Mario si muove a destra
+                marioSiMuoveDestra = true; // Se viene premuto "D", Mario si muove a destra
                 break;
             case "A":
-                marioSiMuoveSinistra = true; // Se viene premuto "a", Mario si muove a sinistra
+                marioSiMuoveSinistra = true; // Se viene premuto "A", Mario si muove a sinistra
                 break;
         }
     });
 
-    // Aggiungi un listener per il rilascio dei tasti della tastiera
+    // listener per il rilascio dei tasti della tastiera
     window.addEventListener("keyup", function (evento) {
         switch (evento.key) {
             case "d":
@@ -225,10 +224,10 @@ function iniziaGioco() {
                 marioSiMuoveSinistra = false; // Quando viene rilasciato "a", Mario smette di muoversi a sinistra
                 break;
             case "D":
-                marioSiMuoveDestra = false; // Quando viene rilasciato "d", Mario smette di muoversi a destra
+                marioSiMuoveDestra = false; // Quando viene rilasciato "D", Mario smette di muoversi a destra
                 break;
             case "A":
-                marioSiMuoveSinistra = false; // Quando viene rilasciato "a", Mario smette di muoversi a sinistra
+                marioSiMuoveSinistra = false; // Quando viene rilasciato "A", Mario smette di muoversi a sinistra
                 break;
         }
     });
@@ -236,9 +235,9 @@ function iniziaGioco() {
     // Imposta un intervallo per muovere continuamente Mario a destra o a sinistra in base all'input
     setInterval(function () {
         if (marioSiMuoveDestra) {
-            muoviMario("destra");
+            muoviMario("destra"); // Muovi Mario a destra se il tasto "d" o "D" è premuto
         } else if (marioSiMuoveSinistra) {
-            muoviMario("sinistra");
+            muoviMario("sinistra"); // Muovi Mario a sinistra se il tasto "a" o "A" è premuto
         }
     }, 100); // Esegui l'intervallo ogni 100 millisecondi
 
