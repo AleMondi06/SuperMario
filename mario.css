@@ -11,12 +11,32 @@ body {
 
 #nome {
   position: absolute;
-  top: 20px;
+  top: 4%;
   left: 50%;
   transform: translateX(-50%); /* Trasla l'elemento per centrarlo orizzontalmente */
   color: black;
   font-size: 50px;
   font-family:"Lucida Console", "Courier New", monospace;
+}
+#tasti {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%); /* Trasla l'elemento per centrarlo orizzontalmente */
+  color: black;
+  font-size: 20px;
+  font-family:"Lucida Console", "Courier New", monospace;
+  font-weight: bold;
+}
+#obb {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%); /* Trasla l'elemento per centrarlo orizzontalmente */
+  color: black;
+  font-size: 20px;
+  font-family:"Lucida Console", "Courier New", monospace;
+  font-weight: bold;
 }
 #start-btn {
   position: absolute;
