@@ -129,7 +129,11 @@ function iniziaGioco() {
 
     // funzione per verificare la collisione tra Mario e un ostacolo
     function verificaCollisione(posizioneOstacolo) {
-        return posizioneOstacolo < posizioneMario + 100 && posizioneOstacolo > posizioneMario; // Verifica se Mario collide con l'ostacolo
+        return posizioneOstacolo < posizioneMario + 100 && posizioneOstacolo > posizioneMario; //intervallo compreso tra la posizione di Mario e la posizione di Mario più 100 unità. Se sì, si considera che Mario ha colliso con l'ostacolo.
+        //Se posizioneMario è 50 e posizioneOstacolo è 120:
+        //posizioneOstacolo < posizioneMario + 100 diventa 120 < 150, che è vero.
+        //posizioneOstacolo > posizioneMario diventa 120 > 50, che è vero.
+        //Quindi la funzione restituirà true.
     }
 
     // funzione per muovere un ostacolo
